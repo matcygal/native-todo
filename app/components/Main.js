@@ -3,6 +3,22 @@ import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Keyboa
 
 import Note from './Note';
 
+import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'native-base';
+
+import * as firebase from 'firebase';
+
+import Note from './Note';
+
+var config = {
+    apiKey: "AIzaSyDgIMIAn6QWmxB2k522j8ILmOPIZCmceNs",
+    authDomain: "trzypoziomy-71583.firebaseapp.com",
+    databaseURL: "https://trzypoziomy-71583.firebaseio.com",
+    projectId: "trzypoziomy-71583",
+    storageBucket: "trzypoziomy-71583.appspot.com",
+    messagingSenderId: "956046279906"
+  };
+  firebase.initializeApp(config);
+
 export default class Main extends React.Component {
 
     constructor(props) {
