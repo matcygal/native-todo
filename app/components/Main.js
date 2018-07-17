@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Keyboa
 
 import Note from './Note';
 
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'native-base';
+import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base';
 
 import * as firebase from 'firebase';
 
@@ -34,10 +34,10 @@ export default class Main extends React.Component {
           return <Note key={key} keyval={key} val={val} deleteMethod={  () => this.deleteNote(key) } />
       });
     return (
-    <KeyboardAvoidingView style={styles.container}>
-        <View style={styles.header}>
+    <Container style={styles.container}>
+        <Header style={styles.header}>
             <Text style={styles.headerText}>Notatki</Text>
-        </View>
+        </Header>
         <ScrollView style={styles.scrollContainer} >
             {notes}
         </ScrollView>
@@ -53,7 +53,7 @@ export default class Main extends React.Component {
         <TouchableOpacity style={styles.addButton} onPress={this.addNote.bind(this)}>
             <Text style={styles.addButtonText}>+</Text>
         </TouchableOpacity>
-    </KeyboardAvoidingView>
+    </Container>
     );
   }
   addNote() {
