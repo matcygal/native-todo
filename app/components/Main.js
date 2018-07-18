@@ -3,21 +3,20 @@ import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Keyboa
 
 import Note from './Note';
 
-import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base';
+import { Container, Content, Header, Form, Input, Item, Button, Label, Footer, FooterTab, Icon, Left, Right, Body, Title, Card, CardItem} from 'native-base';
 
 import * as firebase from 'firebase';
 
-import Note from './Note';
 
-var config = {
-    apiKey: "AIzaSyDgIMIAn6QWmxB2k522j8ILmOPIZCmceNs",
-    authDomain: "trzypoziomy-71583.firebaseapp.com",
-    databaseURL: "https://trzypoziomy-71583.firebaseio.com",
-    projectId: "trzypoziomy-71583",
-    storageBucket: "trzypoziomy-71583.appspot.com",
-    messagingSenderId: "956046279906"
-  };
-  firebase.initializeApp(config);
+// var config = {
+//     apiKey: "AIzaSyDgIMIAn6QWmxB2k522j8ILmOPIZCmceNs",
+//     authDomain: "trzypoziomy-71583.firebaseapp.com",
+//     databaseURL: "https://trzypoziomy-71583.firebaseio.com",
+//     projectId: "trzypoziomy-71583",
+//     storageBucket: "trzypoziomy-71583.appspot.com",
+//     messagingSenderId: "956046279906"
+//   };
+//   firebase.initializeApp(config);
 
 export default class Main extends React.Component {
 
@@ -36,22 +35,61 @@ export default class Main extends React.Component {
     return (
     <Container style={styles.container}>
         <Header style={styles.header}>
-            <Text style={styles.headerText}>Notatki</Text>
+          <Left>
+            <Button transparent>
+              <Icon type="Entypo" name='cog' style={styles.headerIcons}/>
+            </Button>
+          </Left>
+          <Body>
+            <Title style={styles.headerText}>Todo List</Title>
+          </Body>
+          <Right>
+            <Icon type="Octicons" name='light-bulb' style={styles.headerIcons}/>
+          </Right>
         </Header>
         <ScrollView style={styles.scrollContainer} >
+        <Card>
+            <CardItem>
+              <Body>
+                <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at urna diam. Sed et tempor arcu. Aenean finibus sem luctus, convallis mi ut, molestie metus. Aliquam erat volutpat. Integer ornare ipsum aliquam mauris convallis, sed iaculis nisi fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                </Text>
+              </Body>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem>
+              <Body>
+                <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at urna diam. Sed et tempor arcu. Aenean finibus sem luctus, convallis mi ut, molestie metus. Aliquam erat volutpat. Integer ornare ipsum aliquam mauris convallis, sed iaculis nisi fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                </Text>
+              </Body>
+            </CardItem>
+          </Card>
             {notes}
         </ScrollView>
-        <View style={styles.footer}>
-            <TextInput style={styles.textInput}
-            onChangeText={(noteText) => this.setState({noteText})}
-            value={this.state.noteText}
-            placeholder='>note'
-            placeholderTextColor='white'
-            underlineColorAndroid='transparent'>
-            </TextInput>
-        </View>
+        <Footer>
+            <FooterTab>
+                <Button vertical>
+                <Icon type="MaterialCommunityIcons" name="home-variant" />
+                <Text>Home</Text>
+                </Button>
+                <Button vertical>
+                <Icon type="MaterialCommunityIcons" name="infinity" />
+                <Text>Habits</Text>
+                </Button>
+                <Button vertical active>
+                <Icon active type="MaterialCommunityIcons" name="certificate" />
+                <Text>Goals</Text>
+                </Button>
+                <Button vertical>
+                <Icon type="MaterialCommunityIcons" name="checkbox-multiple-marked-circle-outline" />
+                <Text>ToDo's</Text>
+                </Button>
+            </FooterTab>
+        </Footer>
         <TouchableOpacity style={styles.addButton} onPress={this.addNote.bind(this)}>
-            <Text style={styles.addButtonText}>+</Text>
+            <Icon type="MaterialIcons" name="note-add" style={styles.addButtonIcon} />
         </TouchableOpacity>
     </Container>
     );
@@ -79,28 +117,18 @@ const styles = StyleSheet.create({
   container: {
       flex: 1,
   },
-  header: {
-      backgroundColor: '#0173c7',
-      alignItems: 'center',
-      justifyContent:'center',
-      borderBottomWidth: 10,
-      borderBottomColor: '#017bd5'
-  },
   headerText: {
-      color: 'white',
-      fontSize: 18,
-      padding: 26
+      color: '#fff',
+  },
+  header: {
+    backgroundColor: '#0173c7',
   },
   scrollContainer: {
       flex: 1,
       marginBottom: 100
   },
-  footer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      zIndex: 10
+  headerIcons: {
+    color: '#fff',
   },
   textInput: {
       alignSelf: 'stretch',
@@ -123,10 +151,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       elevation: 0
   },
-  addButtonText: {
+  addButtonIcon: {
       color: '#fff',
-      fontSize: 50,
-      paddingBottom: 66,
-      paddingLeft: 2
   }
 });
