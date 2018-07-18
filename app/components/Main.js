@@ -2,8 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 import Note from './Note';
+import HeaderMenu from './HeaderMenu';
+import FooterMenu from './FooterMenu';
 
-import { Container, Content, Header, Form, Input, Item, Button, Label, Footer, FooterTab, Icon, Left, Right, Body, Title, Card, CardItem} from 'native-base';
+import { Container, Content, Form, Input, Item, Button, Label, Footer, FooterTab, Icon, Left, Right, Body, Title, Card, CardItem, StyleProvider} from 'native-base';
+import getTheme from '../../native-base-theme/components';
+import material from '../../native-base-theme/variables/material';
 
 import * as firebase from 'firebase';
 
@@ -33,65 +37,36 @@ export default class Main extends React.Component {
           return <Note key={key} keyval={key} val={val} deleteMethod={  () => this.deleteNote(key) } />
       });
     return (
-    <Container style={styles.container}>
-        <Header style={styles.header}>
-          <Left>
-            <Button transparent>
-              <Icon type="Entypo" name='cog' style={styles.headerIcons}/>
-            </Button>
-          </Left>
-          <Body>
-            <Title style={styles.headerText}>Todo List</Title>
-          </Body>
-          <Right>
-            <Icon type="Octicons" name='light-bulb' style={styles.headerIcons}/>
-          </Right>
-        </Header>
-        <ScrollView style={styles.scrollContainer} >
-        <Card>
-            <CardItem>
-              <Body>
-                <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at urna diam. Sed et tempor arcu. Aenean finibus sem luctus, convallis mi ut, molestie metus. Aliquam erat volutpat. Integer ornare ipsum aliquam mauris convallis, sed iaculis nisi fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                </Text>
-              </Body>
-            </CardItem>
-          </Card>
-          <Card>
-            <CardItem>
-              <Body>
-                <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at urna diam. Sed et tempor arcu. Aenean finibus sem luctus, convallis mi ut, molestie metus. Aliquam erat volutpat. Integer ornare ipsum aliquam mauris convallis, sed iaculis nisi fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                </Text>
-              </Body>
-            </CardItem>
-          </Card>
-            {notes}
-        </ScrollView>
-        <Footer>
-            <FooterTab>
-                <Button vertical>
-                <Icon type="MaterialCommunityIcons" name="home-variant" />
-                <Text>Home</Text>
-                </Button>
-                <Button vertical>
-                <Icon type="MaterialCommunityIcons" name="infinity" />
-                <Text>Habits</Text>
-                </Button>
-                <Button vertical active>
-                <Icon active type="MaterialCommunityIcons" name="certificate" />
-                <Text>Goals</Text>
-                </Button>
-                <Button vertical>
-                <Icon type="MaterialCommunityIcons" name="checkbox-multiple-marked-circle-outline" />
-                <Text>ToDo's</Text>
-                </Button>
-            </FooterTab>
-        </Footer>
-        <TouchableOpacity style={styles.addButton} onPress={this.addNote.bind(this)}>
-            <Icon type="MaterialIcons" name="note-add" style={styles.addButtonIcon} />
-        </TouchableOpacity>
-    </Container>
+    <StyleProvider style={getTheme(material)}>
+        <Container style={styles.container}>
+            <HeaderMenu />
+            <ScrollView style={styles.scrollContainer} >
+            <Card>
+                <CardItem>
+                <Body>
+                    <Text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at urna diam. Sed et tempor arcu. Aenean finibus sem luctus, convallis mi ut, molestie metus. Aliquam erat volutpat. Integer ornare ipsum aliquam mauris convallis, sed iaculis nisi fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                    </Text>
+                </Body>
+                </CardItem>
+            </Card>
+            <Card>
+                <CardItem>
+                <Body>
+                    <Text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at urna diam. Sed et tempor arcu. Aenean finibus sem luctus, convallis mi ut, molestie metus. Aliquam erat volutpat. Integer ornare ipsum aliquam mauris convallis, sed iaculis nisi fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                    </Text>
+                </Body>
+                </CardItem>
+            </Card>
+                {notes}
+            </ScrollView>
+            <FooterMenu />
+            <TouchableOpacity style={styles.addButton} onPress={this.addNote.bind(this)}>
+                <Icon type="MaterialIcons" name="note-add" style={styles.addButtonIcon} />
+            </TouchableOpacity>
+        </Container>
+    </StyleProvider>
     );
   }
   addNote() {
@@ -117,19 +92,9 @@ const styles = StyleSheet.create({
   container: {
       flex: 1,
   },
-  headerText: {
-      color: '#fff',
-  },
-  header: {
-    backgroundColor: '#0173c7',
-  },
   scrollContainer: {
-      flex: 1,
-      marginBottom: 100
-  },
-  headerIcons: {
-    color: '#fff',
-  },
+    flex: 1,
+},
   textInput: {
       alignSelf: 'stretch',
       color: '#fff',
